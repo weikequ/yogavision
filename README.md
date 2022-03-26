@@ -1,3 +1,4 @@
+![logo](/src/media/logobg.svg)
 # **YogaVision**
 
 ### Have you ever wanted to perfect that tree pose, but you felt that yoga instructors are too expensive!
@@ -25,4 +26,3 @@
 
 <br></br>
 <br></br>
-![logo](/src/media/lotus-pose.svg)
