@@ -4,7 +4,10 @@ import Button from "@mui/material/Button";
 const RouterButton = ({ link, text, variant }) => {
   return (
     <div style={{position:"absolute"}}>
-      <Button href={link} variant={variant}>
+      <Button style={{
+              backgroundColor: "#433030",
+            }}
+            href={link} variant={variant}>
         {text}
       </Button>
     </div>
