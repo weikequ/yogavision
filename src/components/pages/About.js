@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@mui/material/Button";
+import RouterButton from "../other/RouterButton";
 const About = () => {
   return (
     <div>
@@ -14,7 +14,11 @@ const About = () => {
       <p>
         <a>Credits</a>
       </p>
-      <Button variant="contained">Let's get started</Button>
+      <RouterButton
+        link="Main"
+        variant="contained"
+        text="Let's get started!"
+      ></RouterButton>
     </div>
   );
 };
