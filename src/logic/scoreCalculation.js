@@ -1,7 +1,10 @@
 const { StrictMode } = require("react")
 
-const SCORE_QUADRATIC_SCALE_FACTOR = 0.006
-const QUADRATIC_b = (-100-180^2*SCORE_QUADRATIC_SCALE_FACTOR)/180
+//const SCORE_QUADRATIC_SCALE_FACTOR = 0.006
+//const QUADRATIC_B = (-100-180^2*SCORE_QUADRATIC_SCALE_FACTOR)/180
+
+const QUADRATIC_B = -1.63555555556
+const QUADRATIC_C = 0.006
 
 //TODO: could be an issue that right and left switch sides when a person turns around
 const IS_RIGHTS_OF_DATA = [
@@ -89,28 +92,39 @@ function findAngleWithHorizantleFrom2Points(a, b, isRight) {
 }
 
 function findScoreOutOf100FromAngleDiff(angleDiff) {
-  return 100 + QUADRATIC_b * angleDiff + SCORE_QUADRATIC_SCALE_FACTOR * angleDiff^2;
+  const x = angleDiff;
+  const score = 100 - 1.6355555*(x) + 0.006*(Math.pow(x,2));
+  if (score < 0){
+    return 0;
+  }
+  return score;
+
 }
 
 export const findScores = (userPoseData, goodPoseData) => {
-  return CHECKED_ANGlES.map(pointIndexes => {
-    const userPoint1 = get2DPointFromData(userPoseData, pointIndexes[0]);
-    const userPoint2 = get2DPointFromData(userPoseData, pointIndexes[1]);
+  if (userPoseData !== undefined || userPoseData !== null) {
+    return CHECKED_ANGlES.map(pointIndexes => {
+      const userPoint1 = get2DPointFromData(userPoseData, pointIndexes[0]);
+      const userPoint2 = get2DPointFromData(userPoseData, pointIndexes[1]);
 
-    const goodPoint1 = get2DPointFromData(goodPoseData, pointIndexes[0]);
-    const goodPoint2 = get2DPointFromData(goodPoseData, pointIndexes[1]);
+      const goodPoint1 = get2DPointFromData(goodPoseData, pointIndexes[0]);
+      const goodPoint2 = get2DPointFromData(goodPoseData, pointIndexes[1]);
 
-    const userAngle = findAngleWithHorizantleFrom2Points(userPoint1, userPoint2, IS_RIGHTS_OF_DATA[pointIndexes[0]]);
-    const goodAngle = findAngleWithHorizantleFrom2Points(goodPoint1, goodPoint2, IS_RIGHTS_OF_DATA[pointIndexes[0]]);
-    return findScoreOutOf100FromAngleDiff(Math.abs(userAngle-goodAngle));
-  })
+      const userAngle = findAngleWithHorizantleFrom2Points(userPoint1, userPoint2, IS_RIGHTS_OF_DATA[pointIndexes[0]]);
+      const goodAngle = findAngleWithHorizantleFrom2Points(goodPoint1, goodPoint2, IS_RIGHTS_OF_DATA[pointIndexes[0]]);
+      return findScoreOutOf100FromAngleDiff(Math.abs(userAngle-goodAngle));
+    })
+  } else {
+    console.log("userPoseData should have been not undefined or null")
+    return [];
+  }
 }
 
-function findAverageScore(userPoseData, goodPoseData) {
+export const findAverageScore = (userPoseData, goodPoseData) => {
   const scores = findScores(userPoseData, goodPoseData);
   return scores.reduce((x,y) => x + y, 0) / scores.length;
 }
 
 function get2DPointFromData(data, index) {
-  return [data[index][0], data[index][1]]
+  return [data[index].x, data[index].y]
 }
