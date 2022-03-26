@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+![logo](/src/media/logobg.svg)
+# **YogaVision**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Have you ever wanted to perfect that tree pose, but you felt that yoga instructors are too expensive!
 
-## Available Scripts
+### Do you want to make perfecting your yoga poses fun? Well, we got the solution for you! 
 
-In the project directory, you can run:
+### *drum roll.....* introducing the revolutionary YogaVision, a real-time yoga pose analyzer!
 
-### `npm start`
+### YogaVision compares your poses with our "world-renowned expert," giving you a score out of 100. Is your tree pose genuinely that good? Well, come find out!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Tree Pose](src/media/tree-pose.svg)
+![Warrior Pose](src/media/warrior-pose.svg)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# **Techincal Specifications**
 
-### `npm test`
+## Languages, Libraries, and API's
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### This project was built using React.js, JavaScript, MaterialUI, React Webcam API, and Google's MediaPipe Pose API.
 
-### `npm run build`
+## Google's MediaPipe Pose
+### An open-source Machine Learning API allows you to do real-time analysis by detecting different parts of your body. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The math behind the magic
+### Computer vision returns a list of points in 3d space for each joint in the human body. For each relevant body segment, such as shoulder to elbow or hip to knee, an angle is calculated based on the two points from the segment and another extrapolated point that gives a segment parallel to the ground. Angle data has been collected from our expert yogis about ideal yoga pose posture. For each body segment, the ideal angle is compared to the user's angle to return a score out of 100. The difference in angles is plugged into a quadratic function that gives a score of 100 at a 0-degree difference and 0 at a 180-degree difference. The quadratic function ensures angle difference values like 45 degrees still give a reasonably low score than a simpler linear function.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br></br>
+<br></br>
