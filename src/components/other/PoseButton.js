@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PoseButton = () => {
+const PoseButton = ({poseName, image}) => {
   return (
     <div>
       
