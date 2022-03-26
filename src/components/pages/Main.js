@@ -1,8 +1,10 @@
-import { Pose } from "@mediapipe/pose"
+import { Pose } from "@mediapipe/pose";
 import React, { useRef, useEffect } from "react";
-import * as poseAll from "@mediapipe/pose"
+import * as poseAll from "@mediapipe/pose";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
+import Button from "@mui/material/Button";
+import RouterButton from "../other/RouterButton";
 
 const Main = () => {
   const webcamRef = useRef(null);
@@ -10,7 +12,6 @@ const Main = () => {
   const connect = window.drawConnectors;
   const land = window.drawLandmarks;
   var camera = null;
-
 
   // EFFECTS: render the result of prediction
   function onResults(results) {
@@ -32,45 +33,48 @@ const Main = () => {
       canvasElement.width,
       canvasElement.height
     );
-    
-        
+
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
 
     // Only overwrite existing pixels.
-    canvasCtx.globalCompositeOperation = 'source-in';
-    canvasCtx.fillStyle = '#00FF00';
+    canvasCtx.globalCompositeOperation = "source-in";
+    canvasCtx.fillStyle = "#00FF00";
     canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
 
     // Only overwrite missing pixels.
-    canvasCtx.globalCompositeOperation = 'destination-atop';
+    canvasCtx.globalCompositeOperation = "destination-atop";
     canvasCtx.drawImage(
-        results.image, 0, 0, canvasElement.width, canvasElement.height);
+      results.image,
+      0,
+      0,
+      canvasElement.width,
+      canvasElement.height
+    );
 
-    canvasCtx.globalCompositeOperation = 'source-over';
-    connect(canvasCtx, results.poseLandmarks, poseAll.POSE_CONNECTIONS,
-                  {color: '#00FF00', lineWidth: 4});
-    land(canvasCtx, results.poseLandmarks,
-                  {color: '#FF0000', lineWidth: 2});
+    canvasCtx.globalCompositeOperation = "source-over";
+    connect(canvasCtx, results.poseLandmarks, poseAll.POSE_CONNECTIONS, {
+      color: "#00FF00",
+      lineWidth: 4,
+    });
+    land(canvasCtx, results.poseLandmarks, { color: "#FF0000", lineWidth: 2 });
     canvasCtx.restore();
 
     console.log(results.poseWorldLandmarks);
   }
 
   useEffect(() => {
-
     const pose = new Pose({
       locateFile: (file) => {
-       return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
       },
     });
-    
 
     pose.setOptions({
       modelComplexity: 1,
       smoothLandmarks: true,
       minDetectionConfidence: 0.5,
-      minTrackingConfidence: 0.5
+      minTrackingConfidence: 0.5,
     });
     pose.onResults(onResults);
 
@@ -89,41 +93,43 @@ const Main = () => {
     }
   }, []);
   return (
-    <center>
-      <div className="App">
-        <Webcam
-          ref={webcamRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        />{" "}
-        <canvas
-          ref={canvasRef}
-          className="output_canvas"
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        ></canvas>
-      </div>
-    </center>
+    <div>
+      <RouterButton link="/" text="About" variant="contained"></RouterButton>
+      <center>
+        <div className="App">
+          <Webcam
+            ref={webcamRef}
+            style={{
+              position: "absolute",
+              marginLeft: "auto",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 9,
+              width: 640,
+              height: 480,
+            }}
+          />{" "}
+          <canvas
+            ref={canvasRef}
+            className="output_canvas"
+            style={{
+              position: "absolute",
+              marginLeft: "auto",
+              marginRight: "auto",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zindex: 9,
+              width: 640,
+              height: 480,
+            }}
+          ></canvas>
+        </div>
+      </center>
+    </div>
   );
-}
+};
 
-
-export default Main
+export default Main;
