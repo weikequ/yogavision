@@ -1,12 +1,11 @@
 import React from "react";
-import Button from "../other/Button";
-
+import Button from "@mui/material/Button";
 const About = () => {
   return (
     <div>
       <h1>Yoga Vision</h1>
       <p>
-        Welcome to Yoga Visio - The app that helps you perfect your yoga poses.
+        Welcome to Yoga Vision - The app that helps you perfect your yoga poses.
         Just choose a pose, try your best to imitate it, and our computer vision
         algorithm will give you a score to indicate how well you did! Based on
         your score, just continue iterating your pose and you will become a yoga
@@ -15,7 +14,7 @@ const About = () => {
       <p>
         <a>Credits</a>
       </p>
-      <Button>Let's get started</Button>
+      <Button variant="contained">Let's get started</Button>
     </div>
   );
 };
