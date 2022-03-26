@@ -11,16 +11,18 @@ const Main = () => {
   const [goodPose, setGoodPose] = useState(goodposeData[0].data)
 
   useEffect(() => {
-    console.log(findScores(poseState, goodPose))
+    // console.log(findScores(poseState, goodPose))
   }, [poseState])
   
 
   return (
-    <div>
-      <RouterButton link="/" text="About" variant="contained" />
+    <>
+    <RouterButton link="/" text="About" variant="contained" />
+    <div style={{display:'flex'}}>
       <PoseSelector poseState={poseState}/>
       <VideoFeed setPoseState={setPoseState} />
     </div>
+    </>
   );
 };
 

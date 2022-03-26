@@ -14,8 +14,9 @@ const VideoFeed = ({setPoseState}) => {
   const connect = window.drawConnectors;
   const land = window.drawLandmarks;
   var camera = null;
-  const WIDTH = '70%'
-  const HEIGHT = '100%'
+
+  const WIDTH = "77%"
+  const HEIGHT = "100%"
 
   const frameStyle = {
     position: "absolute",
