@@ -4,14 +4,32 @@ import * as poseAll from "@mediapipe/pose";
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
 import Button from "@mui/material/Button";
-import RouterButton from "../other/RouterButton";
+import RouterButton from "./RouterButton";
 
-const Main = () => {
+
+const VideoFeed = ({setPoseState}) => {
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
   const land = window.drawLandmarks;
   var camera = null;
+
+  const WIDTH = "77%"
+  const HEIGHT = "100%"
+
+  const frameStyle = {
+    position: "absolute",
+    marginLeft: "auto",
+    // marginRight: "auto",
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    zindex: 9,
+    width: WIDTH,
+    height: HEIGHT,
+    transform: 'scale(-1, 1)'
+  }
 
   // EFFECTS: render the result of prediction
   function onResults(results) {
@@ -60,7 +78,8 @@ const Main = () => {
     land(canvasCtx, results.poseLandmarks, { color: "#FF0000", lineWidth: 2 });
     canvasCtx.restore();
 
-    console.log(results.poseWorldLandmarks);
+    // console.log(results.poseWorldLandmarks);
+    setPoseState(results.poseWorldLandmarks)
   }
 
   useEffect(() => {
@@ -86,50 +105,28 @@ const Main = () => {
         onFrame: async () => {
           await pose.send({ image: webcamRef.current.video });
         },
-        width: 640,
-        height: 480,
+        width: WIDTH,
+        height: HEIGHT,
       });
       camera.start();
     }
   }, []);
+
   return (
-    <div>
-      <RouterButton link="/" text="About" variant="contained"></RouterButton>
-      <center>
-        <div className="App">
+ <center>
+        <div className="">
           <Webcam
             ref={webcamRef}
-            style={{
-              position: "absolute",
-              marginLeft: "auto",
-              marginRight: "auto",
-              left: 0,
-              right: 0,
-              textAlign: "center",
-              zindex: 9,
-              width: 640,
-              height: 480,
-            }}
+            style={frameStyle}
           />{" "}
           <canvas
             ref={canvasRef}
             className="output_canvas"
-            style={{
-              position: "absolute",
-              marginLeft: "auto",
-              marginRight: "auto",
-              left: 0,
-              right: 0,
-              textAlign: "center",
-              zindex: 9,
-              width: 640,
-              height: 480,
-            }}
+            style={frameStyle}
           ></canvas>
         </div>
-      </center>
-    </div>
-  );
-};
+      </center> 
+  )
+}
 
-export default Main;
+export default VideoFeed

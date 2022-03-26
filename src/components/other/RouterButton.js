@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 
 const RouterButton = ({ link, text, variant }) => {
   return (
-    <div>
+    <div style={{position:"absolute"}}>
       <Button href={link} variant={variant}>
         {text}
       </Button>

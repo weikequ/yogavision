@@ -66,9 +66,9 @@ function findAngleFrom3Points(a, b, c) {
   const radians = Math.atan2(c[1]-b[1], c[0]-b[0]) - Math.atan2(a[1]-b[1],a[0]-b[0]);
   const degrees = Math.abs(radians * (180/Math.PI));
   if (degrees > 180) {
-    return 360 - angle;
+    return 360 - degrees;
   }
-  return angle
+  return degrees;
 }
 
 /**
@@ -79,10 +79,11 @@ function findAngleFrom3Points(a, b, c) {
  * @returns Number from 0 to 180
  */
 function findAngleWithHorizantleFrom2Points(a, b, isRight) {
+  let c = 0;
   if (isRight) {
-    let c = [b[0], b[1] + 1.0];
+    c = [b[0], b[1] + 1.0];
   } else {
-    let c = [b[0], b[1] - 1.0];
+    c = [b[0], b[1] - 1.0];
   }
   return findAngleFrom3Points(a, b, c);
 }
@@ -91,7 +92,7 @@ function findScoreOutOf100FromAngleDiff(angleDiff) {
   return 100 + QUADRATIC_b * angleDiff + SCORE_QUADRATIC_SCALE_FACTOR * angleDiff^2;
 }
 
-function findScores(userPoseData, goodPoseData) {
+export const findScores = (userPoseData, goodPoseData) => {
   return CHECKED_ANGlES.map(pointIndexes => {
     const userPoint1 = get2DPointFromData(userPoseData, pointIndexes[0]);
     const userPoint2 = get2DPointFromData(userPoseData, pointIndexes[1]);
@@ -105,9 +106,9 @@ function findScores(userPoseData, goodPoseData) {
   })
 }
 
-function findAverageScore(data) {
-  const scores = findScores(data);
-  return scores.reduce(x,y => x + y, 0) / scores.length;
+function findAverageScore(userPoseData, goodPoseData) {
+  const scores = findScores(userPoseData, goodPoseData);
+  return scores.reduce((x,y) => x + y, 0) / scores.length;
 }
 
 function get2DPointFromData(data, index) {
