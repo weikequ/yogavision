@@ -6,8 +6,12 @@ import warriorPose from "../../media/warrior-pose.svg";
 const PoseSelector = ({ poseState }) => {
   return (
     <div>
-      <PoseButton></PoseButton>
-      <PoseButton poseName="Warrior Pose" image={warriorPose}></PoseButton>
+      <h1 style={{ padding: 20 }}>Select Your Pose:</h1>
+
+      <div style={{ padding: 80 }} className="">
+        <PoseButton poseName="Tree Pose" image={treePose}></PoseButton>
+        <PoseButton poseName="Warrior Pose" image={warriorPose}></PoseButton>
+      </div>
     </div>
   );
 };
