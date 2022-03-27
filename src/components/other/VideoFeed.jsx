@@ -6,17 +6,15 @@ import Webcam from "react-webcam";
 import Button from "@mui/material/Button";
 import RouterButton from "./RouterButton";
 
-
-const VideoFeed = ({setPoseState}) => {
-
+const VideoFeed = ({ setPoseState }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const connect = window.drawConnectors;
   const land = window.drawLandmarks;
   var camera = null;
 
-  const WIDTH = "77%"
-  const HEIGHT = "100%"
+  const WIDTH = "78%";
+  const HEIGHT = "100%";
 
   const frameStyle = {
     position: "absolute",
@@ -28,8 +26,8 @@ const VideoFeed = ({setPoseState}) => {
     zindex: 9,
     width: WIDTH,
     height: HEIGHT,
-    transform: 'scale(-1, 1)'
-  }
+    transform: "scale(-1, 1)",
+  };
 
   // EFFECTS: render the result of prediction
   function onResults(results) {
@@ -79,7 +77,7 @@ const VideoFeed = ({setPoseState}) => {
     canvasCtx.restore();
 
     // console.log(results.poseWorldLandmarks);
-    setPoseState(results.poseWorldLandmarks)
+    setPoseState(results.poseWorldLandmarks);
   }
 
   useEffect(() => {
@@ -113,20 +111,17 @@ const VideoFeed = ({setPoseState}) => {
   }, []);
 
   return (
- <center>
-        <div className="">
-          <Webcam
-            ref={webcamRef}
-            style={frameStyle}
-          />{" "}
-          <canvas
-            ref={canvasRef}
-            className="output_canvas"
-            style={frameStyle}
-          ></canvas>
-        </div>
-      </center> 
-  )
-}
+    <center>
+      <div className="">
+        <Webcam ref={webcamRef} style={frameStyle} />{" "}
+        <canvas
+          ref={canvasRef}
+          className="output_canvas"
+          style={frameStyle}
+        ></canvas>
+      </div>
+    </center>
+  );
+};
 
-export default VideoFeed
+export default VideoFeed;

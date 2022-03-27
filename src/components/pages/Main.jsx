@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import RouterButton from "../other/RouterButton";
 import VideoFeed from "../other/VideoFeed";
 import PoseSelector from "../other/PoseSelector";
-import {findAverageScore, findScores} from "../../logic/scoreCalculation";
-import goodposeData from "../../data/goodPoses.json"
 
+import { findScores } from "../../logic/scoreCalculation";
+import goodposeData from "../../data/goodPoses.json";
+import bgSVG from "../../media/background.svg";
 
 const Main = () => {
 
@@ -24,13 +25,13 @@ const Main = () => {
   }
 
   return (
-    <>
-    <RouterButton link="/" text="About" variant="contained" />
-    <div style={{display:'flex'}}>
-      <PoseSelector goodPose={goodPose} score={score} switchGoodPose={switchGoodPose}/>
-      <VideoFeed setPoseState={setPoseState} />
+    <div style={{ backgroundImage: `url(${bgSVG})` }}>
+      <RouterButton link="/" text="About" variant="contained" />
+      <div style={{display:'flex'}}>
+        <PoseSelector goodPose={goodPose} score={score} switchGoodPose={switchGoodPose}/>
+        <VideoFeed setPoseState={setPoseState} />
+      </div>
     </div>
-    </>
   );
 };
 
