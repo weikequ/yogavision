@@ -3,11 +3,11 @@ import IconButton from "@mui/material/IconButton";
 
 const PoseButton = ({ poseName, image, switchGoodPose, data }) => {
   return (
-    <div className="mt-5">
+    <div>
       <IconButton onClick={() => switchGoodPose(data)}>
-        <img src={image}></img>
+        <img className="ml-5" src={image}></img>
+        <div className="text-center">{poseName}</div>
       </IconButton>
-      <div className="text-center">{poseName}</div>
     </div>
   );
 };
