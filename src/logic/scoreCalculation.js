@@ -102,7 +102,7 @@ function findScoreOutOf100FromAngleDiff(angleDiff) {
 }
 
 export const findScores = (userPoseData, goodPoseData) => {
-  if (userPoseData !== undefined || userPoseData !== null) {
+  if (userPoseData !== undefined && userPoseData !== null) {
     return CHECKED_ANGlES.map(pointIndexes => {
       const userPoint1 = get2DPointFromData(userPoseData, pointIndexes[0]);
       const userPoint2 = get2DPointFromData(userPoseData, pointIndexes[1]);
