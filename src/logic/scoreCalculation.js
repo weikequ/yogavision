@@ -126,8 +126,8 @@ export const findAverageScore = (userPoseData, goodPoseData) => {
 }
 
 function get2DPointFromData(data, index) {
-  if (data[index].x !== null && data[index].y !== null) {
+  if ((typeof data[index].x !== "undefined") && (typeof data[index].y !== "undefined")) {
     return [data[index].x, data[index].y]
   }
-  return []
+  return [1, 2]
 }
