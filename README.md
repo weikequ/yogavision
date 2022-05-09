@@ -1,6 +1,7 @@
 ![logo](/src/media/logobg.svg)
 
-# YogaVision
+# [YogaVision](https://yogavision.weike.ca)
+
 
 **Take charge of your well being.**
 
